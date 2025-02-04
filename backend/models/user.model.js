@@ -57,6 +57,13 @@ const userSchema = new mongoose.Schema(
 			type: String,
 			default: "",
 		},
+
+		// we are maintaining the likedPosts, caz when we visit a userprofile, we should able to see the posts that they liked it.each post or each document will be a refernce to the post
+		likedPosts:[{
+			type:mongoose.Schema.Types.ObjectId,
+			ref:"Post",
+			default:[]  // intially when they sigup, they didn't like any posts. we want to update this array when a user like or unlike posts.
+		}]
     },{timestamps:true});
 
     const User= mongoose.model("User",userSchema);
