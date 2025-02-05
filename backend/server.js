@@ -6,6 +6,7 @@ import {v2 as cloudinary} from "cloudinary"
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
 import postRoutes from "./routes/post.route.js";
+import notificationsRoutes from "./routes/notification.route.js";
 
 import connectMongoDB from "./db/connectMongoDB.js";
 
@@ -29,6 +30,7 @@ app.use(cookieParser()) // we need this to parse the request.cookie
 app.use("/api/auth",authRoutes);
 app.use("/api/users",userRoutes);
 app.use("/api/posts",postRoutes);
+app.use("/api/notifications",notificationsRoutes);
 
 app.get("/",(req,res)=>{
     res.send("server is ready");
