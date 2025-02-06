@@ -10,7 +10,7 @@ router.get("/following",protectRoute,getFollowingPosts);
 router.get("/likes/:id",protectRoute,getLikedPosts);
 // only users who are authenticated can create a posts
 router.post("/create",protectRoute,createPost);
-router.delete("/like/:id",protectRoute,deletePost);
+router.delete("/:id",protectRoute,deletePost);
 router.get("/user/:username",protectRoute,getUserPosts);
 
 // // the id of the post that we like
