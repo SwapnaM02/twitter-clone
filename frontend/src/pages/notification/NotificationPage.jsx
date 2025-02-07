@@ -27,7 +27,6 @@ const NotificationPage = () => {
 	const { mutate: deleteNotifications } = useMutation({
 		mutationFn: async () => {
 			try {
-				console.log("delete notification is called");
 				const res = await fetch("/api/notifications", {
 					method: "DELETE",
 				});
@@ -62,7 +61,7 @@ const NotificationPage = () => {
 							className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'
 						>
 							<li>
-								<a onClick={()=>deleteNotifications()}>Delete all notifications</a>
+								<a onClick={deleteNotifications}>Delete all notifications</a>
 							</li>
 						</ul>
 					</div>

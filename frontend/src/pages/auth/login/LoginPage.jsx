@@ -5,15 +5,14 @@ import XSvg from "../../../components/svgs/X";
 
 import { MdOutlineMail } from "react-icons/md";
 import { MdPassword } from "react-icons/md";
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
 const LoginPage = () => {
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
 	});
-
 	const queryClient = useQueryClient();
 
 	const {
@@ -43,23 +42,18 @@ const LoginPage = () => {
 		},
 		onSuccess: () => {
 			// refetch the authUser
-			toast.success("login successfully");
-			// it is going to refetch , the query we would like to refetch,refetch the auth user to able to update the UI.
 			queryClient.invalidateQueries({ queryKey: ["authUser"] });
 		},
 	});
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(formData);
-		loginMutation(formData)
+		loginMutation(formData);
 	};
 
 	const handleInputChange = (e) => {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	};
-
-	// const isError = false;
 
 	return (
 		<div className='max-w-screen-xl mx-auto flex h-screen'>
@@ -93,7 +87,9 @@ const LoginPage = () => {
 							value={formData.password}
 						/>
 					</label>
-					<button className='btn rounded-full btn-primary text-white'>{isPending?"Loading.....":"Login"}</button>
+					<button className='btn rounded-full btn-primary text-white'>
+						{isPending ? "Loading..." : "Login"}
+					</button>
 					{isError && <p className='text-red-500'>{error.message}</p>}
 				</form>
 				<div className='flex flex-col gap-2 mt-4'>
